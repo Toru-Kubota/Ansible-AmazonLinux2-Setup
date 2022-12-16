@@ -1,0 +1,28 @@
+---
+local_timezone: "Asia/Tokyo"
+local_locale: "ja_JP.utf8"
+locale_keymap: "jp"
+linux_hostname: "Linux-hostname"
+
+user:
+  user_name: "ec2-user"
+  key_dest: "/home/ec2-user/.ssh"
+  key_pem: "key.pem"
+
+install_packages_list:
+  - net-snmp
+  - net-snmp-utils
+  - libselinux-python
+
+enabled_packages_list:
+  - snmpd
+  - chronyd
+
+disabled_packages_list:
+
+snmp_community_name: "public"
+
+user_newusers:
+  opuser01:
+    password: "{{ 'opuser01' |password_hash('sha512') }}"
+    groups: wheel
